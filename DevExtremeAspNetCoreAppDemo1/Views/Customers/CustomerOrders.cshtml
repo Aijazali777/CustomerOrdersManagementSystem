@@ -1,0 +1,43 @@
+﻿@model CustomerOrdersViewModel
+
+<h2>CustomerOrders</h2>
+
+<h1>Customer Information</h1>
+<p>Customer ID: @Model.CustomerId</p>
+<p>Name: @Model.CustomerName</p>
+<p>Address: @Model.CustomerAddress</p>
+<h2>Orders</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.Orders)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.TotalPrice</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@(Html.DevExtreme().DataGrid<Order>()
+        .DataSource(ds => ds.Mvc()
+            .Controller("Customers")
+            .LoadAction("CustomerOrders")
+            .Key("OrderId")
+        )
+        .RemoteOperations(true)
+        .Columns(columns =>
+        {
+            columns.AddFor(m => m.OrderId).Caption("Order ID");
+            columns.AddFor(m => m.CustomerId).Caption("Customer ID");
+            columns.AddFor(m => m.NumberOfItems).Caption("Number of Items");
+            columns.AddFor(m => m.TotalPrice).Caption("Total Price").Format("currency");
+            columns.AddFor(m => m.PaymentStatus).Caption("Payment Status");
+        })
+)

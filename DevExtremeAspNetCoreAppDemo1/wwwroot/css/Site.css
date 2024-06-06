@@ -1,0 +1,27 @@
+
+
+h3 {
+    font-size: 2em;
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+}
+
+h1, h4, p {
+    margin-top: 0.75em;
+    text-align: center;
+}
+
+.ImageThumbail {
+    align-items: center;
+    margin-left: 45%;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    color: white;
+    background-color: lightslategray
+}

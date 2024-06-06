@@ -1,0 +1,27 @@
+﻿<h3>Orders</h3>
+
+@(Html.DevExtreme().DataGrid<DevExtremeAspNetCoreAppDemo1.Models.Order>()
+    .DataSource(ds => ds.Mvc()
+        .Controller("Orders")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("OrderId")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+        columns.AddFor(m => m.CustomerId);
+
+        columns.AddFor(m => m.NumberOfItems);
+
+        columns.AddFor(m => m.TotalPrice);
+
+        columns.AddFor(m => m.PaymentStatus);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)
