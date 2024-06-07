@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<Customer>
 
+@{
+    Layout = "_LayoutDashboard";
+}
+
 <h3>Customers</h3>
 
 @(Html.DevExtreme().DataGrid<DevExtremeAspNetCoreAppDemo1.Models.Customer>()

@@ -28,7 +28,16 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
 
         public IActionResult Index()
         {
-           // var model = customerRepo.GetAllCustomers();
+            return View();
+        }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
             return View();
         }
     }

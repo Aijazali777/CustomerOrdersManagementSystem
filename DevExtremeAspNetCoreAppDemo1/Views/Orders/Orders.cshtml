@@ -1,4 +1,8 @@
-﻿<h3>Orders</h3>
+﻿@{
+    Layout = "_LayoutDashboard";
+}
+
+<h3>Orders</h3>
 
 @(Html.DevExtreme().DataGrid<DevExtremeAspNetCoreAppDemo1.Models.Order>()
     .DataSource(ds => ds.Mvc()
@@ -11,6 +15,8 @@
     )
     .RemoteOperations(true)
     .Columns(columns => {
+        columns.AddFor(m => m.OrderId).AllowEditing(false);
+
         columns.AddFor(m => m.CustomerId);
 
         columns.AddFor(m => m.NumberOfItems);

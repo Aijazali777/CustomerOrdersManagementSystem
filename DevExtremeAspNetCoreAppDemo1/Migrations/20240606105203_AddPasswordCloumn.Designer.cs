@@ -3,45 +3,22 @@ using DevExtremeAspNetCoreAppDemo1.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DevExtremeAspNetCoreAppDemo1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240606105203_AddPasswordCloumn")]
+    partial class AddPasswordCloumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("DevExtremeAspNetCoreAppDemo1.Models.Admin", b =>
-                {
-                    b.Property<int>("AdminId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Password");
-
-                    b.Property<double>("Phone");
-
-                    b.Property<string>("Username");
-
-                    b.HasKey("AdminId");
-
-                    b.ToTable("Admin");
-
-                    b.HasData(
-                        new { AdminId = 1, Email = "james@custorderpro.com", Name = "James", Password = "admin1", Phone = 11230001.0, Username = "admin1" }
-                    );
-                });
 
             modelBuilder.Entity("DevExtremeAspNetCoreAppDemo1.Models.Customer", b =>
                 {

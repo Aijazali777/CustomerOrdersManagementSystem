@@ -1,0 +1,28 @@
+﻿@using (Html.BeginForm("AdminLogin", "Customers", FormMethod.Post))
+{
+    <div class="custom-form">
+        @(Html.DevExtreme().Form<DevExtremeAspNetCoreAppDemo1.Models.Admin>()
+                .LabelLocation(FormLabelLocation.Top)
+                .Option("CssClass", "custom-form")
+                .Items(items =>
+                {
+                items.AddSimple().CssClass("custom-headerlabel")
+                    .Template(@<text>
+                       <div>Admin SignUp</div>
+                    </text>);
+
+                    items.AddSimpleFor(m => m.Username).CssClass("custom-input").IsRequired(true);
+
+                    items.AddSimpleFor(m => m.Password).CssClass("custom-input").Editor(m => m.TextBox().Mode(TextBoxMode.Password)).IsRequired(true);
+
+                    items.AddSimpleFor(m => m.Name).CssClass("custom-input").IsRequired(true);
+
+                    items.AddSimpleFor(m => m.Phone).CssClass("custom-input").IsRequired(true);
+
+                    items.AddSimpleFor(m => m.Email).CssClass("custom-input").IsRequired(true);
+
+                    items.AddButton().CssClass("custom-button").HorizontalAlignment(HorizontalAlignment.Center).ButtonOptions(options => options.Text("SignUp").Type(ButtonType.Default).UseSubmitBehavior(true));
+                })
+        )
+    </div>
+}

@@ -29,6 +29,80 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             return View();
         }
 
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+
+        public IActionResult AdminSignUp()
+        {
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            bool loginMessgae = false;
+            ViewBag.LoginMessage = loginMessgae;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ClickLogin(Customer model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.Password != null)
+                {
+                    return View("Customers");
+                }
+                else
+                {
+                    bool loginMessgae = true;
+                    ViewBag.LoginMessage = loginMessgae;
+                    return View("Login");
+                }      
+            }
+            else
+            {
+                return View("Login");
+            }     
+        }
+
+        public IActionResult AdminLogin()
+        {
+            bool loginMessgae = false;
+            ViewBag.LoginMessage = loginMessgae;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ClickAdminLogin(Admin model)
+        {
+            if (ModelState.IsValid)
+            {
+                var admin = _context.Admin.FirstOrDefault(a => a.Username == model.Username && a.Password == model.Password);
+                if (admin != null)
+                {
+                    return View("Dashboard");
+                }
+                else
+                {
+                    bool loginMessgae = true;
+                    ViewBag.LoginMessage = loginMessgae;
+                    return View("AdminLogin");
+                }
+            }
+            else
+            {
+                return View("AdminLogin");
+            }
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

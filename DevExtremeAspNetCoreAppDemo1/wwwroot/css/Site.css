@@ -1,4 +1,12 @@
+.custom-body {
+    background-color: #708090;
+}
 
+.right-side-menu {
+    margin-right: 0px;
+    align-items:flex-end;
+    margin-left: 71%;
+}
 
 h3 {
     font-size: 2em;
@@ -14,6 +22,35 @@ h1, h4, p {
 .ImageThumbail {
     align-items: center;
     margin-left: 45%;
+}
+
+.custom-form {
+    /* Add your custom styles here */
+    background-color:lightsteelblue; /* Example: Light gray background */
+    padding: 10px; /* Example: Padding around the form */
+    border-radius: 5px; /* Example: Rounded corners */
+    margin-top: 2.5%;
+    margin-left: 38%;
+    width: 25%;
+    align-items: center;
+}
+
+.custom-headerlabel{
+    text-align:center;
+    font-size: 2em;
+    margin-bottom: 0.50em;
+    font-weight:bold;
+}
+
+.custom-input {
+    border-radius: 4px; /* Rounded corners for inputs */
+    padding: 5px; /* Padding inside inputs */
+    width: 80%; /* Full width inputs */
+    margin-left: 10%;
+}
+
+.custom-button {
+    margin-bottom: 1em;
 }
 
 .footer {

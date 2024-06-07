@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="~/js/vendor.js" asp-append-version="true"></script>
 </head>
-<body>
+<body class="custom-body">
 
     <div>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -19,44 +19,38 @@
             </a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a asp-action="index" asp-controller="home" class="nav-link">Home</a>
+                    <a asp-action="dashboard" asp-controller="customers" class="nav-link">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a asp-action="about" asp-controller="home" class="nav-link">About Us</a>
+                    <a asp-action="customers" asp-controller="customers" class="nav-link">Customers</a>
                 </li>
                 <li class="nav-item">
-                    <a asp-action="contact" asp-controller="home" class="nav-link">Contact Us</a>
+                    <a asp-action="orders" asp-controller="orders" class="nav-link">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="customerorders" asp-controller="customers" class="nav-link">CustomerOrders</a>
                 </li>
             </ul>
             <ul class="navbar-nav right-side-menu">
                 <li class="nav-item">
-                    <a asp-action="login" asp-controller="customers" class="nav-link"><i class="fa fa-user"></i> Login</a>
+                    <a style="color:white"><i class="fa fa-user fa-2x"></i> Admin</a>
                 </li>
-                <li class="nav-item nav-link">|</li>
                 <li class="nav-item">
-                    <a asp-action="signup" asp-controller="customers" class="nav-link"><i class="fa fa-user-plus"></i> SignUp</a>
+                    <a asp-action="index" asp-controller="home" class="nav-link"><i class="fa fa-power-off fa-2x"></i></a>
                 </li>
             </ul>
         </nav>
 
         <div>
+
 @RenderBody()
 </div>
 </div>
 
-    <footer class="footer">
-        <div>
-            <p> @DateTime.Now.Year Copyright: CustOrderPro</p>
-        </div>
-    </footer>
-
-         @*@RenderSection("Scripts", required: false);*@
-
-
-@if(IsSectionDefined("Scripts"))
-    {
-
-@RenderSection("Scripts", required: true);
-    }
+<footer class="footer">
+    <div>
+        <p> @DateTime.Now.Year Copyright: CustOrderPro</p>
+    </div>
+</footer>
 </body>
 </html>

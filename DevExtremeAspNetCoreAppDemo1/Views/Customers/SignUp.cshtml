@@ -1,0 +1,31 @@
+﻿
+<div class="custom-form">
+    @(Html.DevExtreme().Form<DevExtremeAspNetCoreAppDemo1.Models.Customer>()
+            .LabelLocation(FormLabelLocation.Top)
+            .Option("CssClass", "custom-form")
+            .Items(items =>
+            {
+                items.AddSimple().CssClass("custom-headerlabel")
+                .Template(@<text>
+                   <div>SignUp</div>
+                </text>);
+
+                items.AddSimpleFor(m => m.Name).CssClass("custom-input");
+
+                items.AddSimpleFor(m => m.Password).CssClass("custom-input").Editor(m => m.TextBox().Mode(TextBoxMode.Password));
+
+                items.AddSimpleFor(m => m.Gender).CssClass("custom-input");
+
+                items.AddSimpleFor(m => m.Phone).CssClass("custom-input");
+
+                items.AddSimpleFor(m => m.Address).CssClass("custom-input");
+
+                items.AddSimpleFor(m => m.City).CssClass("custom-input");
+
+                items.AddSimpleFor(m => m.Country).CssClass("custom-input");
+
+                items.AddButton().CssClass("custom-button").HorizontalAlignment(HorizontalAlignment.Center).ButtonOptions(options => options.Text("SignUp").Type(ButtonType.Default).UseSubmitBehavior(true));
+            })
+    )
+</div>
+

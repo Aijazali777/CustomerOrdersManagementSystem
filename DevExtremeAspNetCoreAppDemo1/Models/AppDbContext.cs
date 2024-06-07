@@ -15,6 +15,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Models
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Admin> Admin { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -67,6 +68,17 @@ namespace DevExtremeAspNetCoreAppDemo1.Models
                         PaymentStatus = "Pending"
                     }
                 );
+
+            modelBuilder.Entity<Admin>().HasData(
+                new Admin
+                {
+                    AdminId = 1,
+                    Username = "admin1",
+                    Password = "admin1",
+                    Name = "James",
+                    Phone = 11230001,
+                    Email = "james@custorderpro.com"
+            });
         }
     }
     
