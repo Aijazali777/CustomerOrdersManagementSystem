@@ -11,16 +11,16 @@
                        <div>Login</div>
                     </text>);
 
-                        items.AddSimpleFor(m => m.Name).CssClass("custom-input").Editor(m => m.TextBox().ShowClearButton(true));
+                items.AddSimpleFor(m => m.Name).CssClass("custom-input").Editor(m => m.TextBox().ShowClearButton(true)).IsRequired(true);
 
-                        items.AddSimpleFor(m => m.Password).CssClass("custom-input").Editor(m => m.TextBox().Mode(TextBoxMode.Password).ShowClearButton(true));
+                items.AddSimpleFor(m => m.Password).CssClass("custom-input").Editor(m => m.TextBox().Mode(TextBoxMode.Password).ShowClearButton(true)).IsRequired(true);
 
-                        items.AddButton().CssClass("custom-button").HorizontalAlignment(HorizontalAlignment.Center).ButtonOptions(options => options.Text("Login").Type(ButtonType.Default).UseSubmitBehavior(true));
+                items.AddButton().CssClass("custom-button").HorizontalAlignment(HorizontalAlignment.Center).ButtonOptions(options => options.Text("Login").Type(ButtonType.Default).UseSubmitBehavior(true));
 
-                        if((bool)ViewBag.LoginMessage)
-                        {
-                            items.AddSimple()
-                            .Template(@<text>
+                if ((bool)ViewBag.LoginMessage)
+                {
+                    items.AddSimple()
+                        .Template(@<text>
                                 <div style="text-align: center; color:red;"> Incorrect name or password</div>
                                 </text>);
                         }
@@ -33,8 +33,6 @@
                                 </div>
                     </text>);
                     })
-
-
         )
     </div>
 }

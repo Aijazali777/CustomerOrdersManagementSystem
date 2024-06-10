@@ -18,14 +18,6 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             customerRepo = customerRepository;
         }
 
-      /*  public object Get(DataSourceLoadOptions loadOptions)
-        {
-            var customers = customerRepo.GetAllCustomers();
-            return DataSourceLoader.Load(customers, loadOptions);
-            // var result = DataSourceLoader.Load(customers, loadOptions);
-            //  return Json(result);
-        }*/
-
         public IActionResult Index()
         {
             return View();

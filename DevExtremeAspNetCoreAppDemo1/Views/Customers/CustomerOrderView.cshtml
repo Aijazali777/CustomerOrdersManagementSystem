@@ -1,0 +1,46 @@
+﻿@model Customer
+ 
+@{
+    Layout = "_LayoutCustomer";
+}
+
+<div class="cust-details">
+    <h5>ID: @Model.Id  &nbsp  Name: @Model.Name</h5>
+    <h5>Gender: @Model.Gender   &nbsp  Phone: @Model.Phone</h5>
+    <h5>Address: @Model.Address   &nbsp  City: @Model.City</h5>
+    <h5>Country: @Model.Country</h5>
+</div> 
+<h2>My Orders</h2>
+@(Html.DevExtreme().DataGrid<DevExtremeAspNetCoreAppDemo1.Models.Order>()
+    .DataSource(ds => ds.Mvc()
+        .Controller("Orders")
+        .LoadAction("Get")
+        .LoadParams(new { customerId = @Model.Id })
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("OrderId")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.OrderId).AllowEditing(false);
+
+        columns.AddFor(m => m.CustomerId).Lookup(lookup => lookup
+            .DataSource(ds => ds.WebApi().Controller("Orders").LoadAction("CustomersLookup").LoadParams( new { custid = @Model.Id }) .Key("Value"))
+            .ValueExpr("Value")
+            .DisplayExpr("Text")
+        );
+
+        columns.AddFor(m => m.NumberOfItems);
+
+        columns.AddFor(m => m.TotalPrice);
+
+        columns.AddFor(m => m.PaymentStatus);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)

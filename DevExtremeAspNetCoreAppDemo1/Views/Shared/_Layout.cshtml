@@ -27,12 +27,9 @@
                 <li class="nav-item">
                     <a asp-action="contact" asp-controller="home" class="nav-link">Contact Us</a>
                 </li>
-            </ul>
-            <ul class="navbar-nav right-side-menu">
                 <li class="nav-item">
                     <a asp-action="login" asp-controller="customers" class="nav-link"><i class="fa fa-user"></i> Login</a>
                 </li>
-                <li class="nav-item nav-link">|</li>
                 <li class="nav-item">
                     <a asp-action="signup" asp-controller="customers" class="nav-link"><i class="fa fa-user-plus"></i> SignUp</a>
                 </li>
@@ -40,23 +37,14 @@
         </nav>
 
         <div>
-@RenderBody()
-</div>
-</div>
+            @RenderBody()
+        </div>
+    </div>
 
     <footer class="footer">
         <div>
             <p> @DateTime.Now.Year Copyright: CustOrderPro</p>
         </div>
     </footer>
-
-         @*@RenderSection("Scripts", required: false);*@
-
-
-@if(IsSectionDefined("Scripts"))
-    {
-
-@RenderSection("Scripts", required: true);
-    }
 </body>
 </html>

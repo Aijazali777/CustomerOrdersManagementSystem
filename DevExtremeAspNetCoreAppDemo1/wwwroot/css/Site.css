@@ -2,10 +2,9 @@
     background-color: #708090;
 }
 
-.right-side-menu {
-    margin-right: 0px;
-    align-items:flex-end;
-    margin-left: 71%;
+.cust-details {
+    padding:10px;
+    left: 10px;
 }
 
 h3 {
@@ -25,14 +24,15 @@ h1, h4, p {
 }
 
 .custom-form {
-    /* Add your custom styles here */
-    background-color:lightsteelblue; /* Example: Light gray background */
-    padding: 10px; /* Example: Padding around the form */
-    border-radius: 5px; /* Example: Rounded corners */
+    background-color:lightsteelblue;
+    padding: 20px;
+    border-radius: 5px;
     margin-top: 2.5%;
-    margin-left: 38%;
-    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
     align-items: center;
+    max-width: 500px;
 }
 
 .custom-headerlabel{

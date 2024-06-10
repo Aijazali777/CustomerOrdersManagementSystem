@@ -28,22 +28,26 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(DataSourceLoadOptions loadOptions) {
-            var orders = _context.Orders.Select(i => new {
-                i.OrderId,
-                i.CustomerId,
-                i.NumberOfItems,
-                i.TotalPrice,
-                i.PaymentStatus
-            });
+        public async Task<IActionResult> Get(DataSourceLoadOptions loadOptions, int? customerId)
+        {
+            
+            if (customerId != null)
+            {
+                var orders = _context.Orders.Where(order => order.CustomerId == customerId);
+                return Json(await DataSourceLoader.LoadAsync(orders, loadOptions));
+            }
+            else
+            {
+                var allOrders = _context.Orders.Select(i => new {
+                    i.OrderId,
+                    i.CustomerId,
+                    i.NumberOfItems,
+                    i.TotalPrice,
+                    i.PaymentStatus
+                });
 
-            // If underlying data is a large SQL table, specify PrimaryKey and PaginateViaPrimaryKey.
-            // This can make SQL execution plans more efficient.
-            // For more detailed information, please refer to this discussion: https://github.com/DevExpress/DevExtreme.AspNet.Data/issues/336.
-            // loadOptions.PrimaryKey = new[] { "OrderId" };
-            // loadOptions.PaginateViaPrimaryKey = true;
-
-            return Json(await DataSourceLoader.LoadAsync(orders, loadOptions));
+                return Json(await DataSourceLoader.LoadAsync(allOrders, loadOptions));
+            }
         }
 
         [HttpPost]
@@ -87,14 +91,30 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> CustomersLookup(DataSourceLoadOptions loadOptions) {
-            var lookup = from i in _context.Customers
-                         orderby i.Name
-                         select new {
-                             Value = i.Id,
-                             Text = i.Name
-                         };
-            return Json(await DataSourceLoader.LoadAsync(lookup, loadOptions));
+        public async Task<IActionResult> CustomersLookup(DataSourceLoadOptions loadOptions, int? custId)
+        {
+            if(custId != null)
+            {
+                var lookupOne = from i in _context.Customers
+                             where i.Id == custId
+                             select new
+                             {
+                                 Value = i.Id,
+                                 Text = i.Name
+                             };
+                return Json(await DataSourceLoader.LoadAsync(lookupOne, loadOptions));
+            }
+            else
+            {
+                var lookup = from i in _context.Customers
+                             orderby i.Name
+                             select new
+                             {
+                                 Value = i.Id,
+                                 Text = i.Name
+                             };
+                return Json(await DataSourceLoader.LoadAsync(lookup, loadOptions));
+            }
         }
 
         private void PopulateModel(Order model, IDictionary values) {

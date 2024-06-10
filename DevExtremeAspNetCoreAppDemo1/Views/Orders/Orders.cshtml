@@ -25,6 +25,9 @@
 
         columns.AddFor(m => m.PaymentStatus);
     })
+    .Paging(p => p.PageSize(10))
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(f => f.Visible(true))
     .Editing(e => e
         .AllowAdding(true)
         .AllowUpdating(true)

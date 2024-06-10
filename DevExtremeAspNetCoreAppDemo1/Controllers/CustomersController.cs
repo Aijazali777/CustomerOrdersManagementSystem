@@ -15,7 +15,6 @@ using DevExtremeAspNetCoreAppDemo1.ViewModels;
 
 namespace DevExtremeAspNetCoreAppDemo1.Controllers
 {
-    //[Route("api/[controller]/[action]")]
     public class CustomersController : Controller
     {
         private AppDbContext _context;
@@ -39,9 +38,14 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             return View();
         }
 
-        public IActionResult AdminSignUp()
+        [HttpPost]
+        public IActionResult ClickSignUp(Customer model)
         {
-            return View();
+            _context.Customers.Add(model);
+            _context.SaveChanges();
+            bool loginMessgae = false;
+            ViewBag.LoginMessage = loginMessgae;
+            return View("Login");
         }
 
         public IActionResult Login()
@@ -56,9 +60,10 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (model.Password != null)
+                var cust = _context.Customers.FirstOrDefault(e => e.Name == model.Name && e.Password == model.Password);
+                if (cust != null)
                 {
-                    return View("Customers");
+                    return View("CustomerOrderView", cust);
                 }
                 else
                 {
@@ -165,6 +170,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
         {
             string ID = nameof(Customer.Id);
             string NAME = nameof(Customer.Name);
+            string PASSWORD = nameof(Customer.Password);
             string GENDER = nameof(Customer.Gender);
             string PHONE = nameof(Customer.Phone);
             string ADDRESS = nameof(Customer.Address);
@@ -177,6 +183,11 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
 
             if(values.Contains(NAME)) {
                 model.Name = Convert.ToString(values[NAME]);
+            }
+
+            if (values.Contains(PASSWORD))
+            {
+                model.Password = Convert.ToString(values[PASSWORD]);
             }
 
             if (values.Contains(GENDER))
@@ -217,6 +228,21 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
         }
 
         public IActionResult CustomerOrders()
+        {
+            int customerId = 1;
+            var customerOrders = _context.Customers.Where(c => c.Id == customerId).Select(c => new CustomerOrdersViewModel
+            {
+                CustomerId = c.Id,
+                CustomerName = c.Name,
+                CustomerAddress = c.Address,
+                Orders = c.Orders.ToList()
+            })
+            .FirstOrDefault();
+
+            return View(customerOrders);
+        }
+
+        public IActionResult CustomerOrderView()
         {
             int customerId = 1;
             var customerOrders = _context.Customers.Where(c => c.Id == customerId).Select(c => new CustomerOrdersViewModel

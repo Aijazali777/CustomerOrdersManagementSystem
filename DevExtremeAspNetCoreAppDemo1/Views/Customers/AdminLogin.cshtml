@@ -11,9 +11,9 @@
                        <div>Admin Login</div>
                     </text>);
 
-                        items.AddSimpleFor(m => m.Username).CssClass("custom-input").Editor(m => m.TextBox().ShowClearButton(true));
+                        items.AddSimpleFor(m => m.Username).CssClass("custom-input").Editor(m => m.TextBox().ShowClearButton(true)).IsRequired(true);
 
-                        items.AddSimpleFor(m => m.Password).CssClass("custom-input").Editor(m => m.TextBox().Mode(TextBoxMode.Password).ShowClearButton(true));
+                        items.AddSimpleFor(m => m.Password).CssClass("custom-input").Editor(m => m.TextBox().Mode(TextBoxMode.Password).ShowClearButton(true)).IsRequired(true);
 
                         items.AddButton().CssClass("custom-button").HorizontalAlignment(HorizontalAlignment.Center).ButtonOptions(options => options.Text("Login").Type(ButtonType.Default).UseSubmitBehavior(true));
 
@@ -21,14 +21,9 @@
                         {
                             items.AddSimple()
                             .Template(@<text>
-                                <div style="text-align: center; color:red;"> Incorrect name or password</div>
+                                <div style="text-align: center; color:red;"> Incorrect username or password</div>
                                 </text>);
                         }
-
-                        items.AddSimple()
-                   .Template(@<text>
-                       <div style="text-align: center">Not registered? <a asp-controller="customers" asp-action="adminsignup">Click here to register!</a></div>
-                    </text>);
                     })
         )
     </div>
