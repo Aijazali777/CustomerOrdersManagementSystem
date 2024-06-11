@@ -11,15 +11,23 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using DevExtremeAspNetCoreAppDemo1.Models;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace DevExtremeAspNetCoreAppDemo1.Controllers
 {
     public class OrdersController : Controller
     {
         private AppDbContext _context;
+        private ILogger<OrdersController> _logger;
+        private string OrdersCacheKey = "OrdersList";
+        private IMemoryCache _cache;
 
-        public OrdersController(AppDbContext context) {
+        public OrdersController(AppDbContext context, ILogger<OrdersController> logger, IMemoryCache cache)
+        {
             _context = context;
+            _logger = logger;
+            _cache = cache;
         }
 
         public IActionResult Orders()
@@ -28,25 +36,32 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(DataSourceLoadOptions loadOptions, int? customerId)
+        public object Get(DataSourceLoadOptions loadOptions, int? customerId)
         {
             
             if (customerId != null)
             {
                 var orders = _context.Orders.Where(order => order.CustomerId == customerId);
-                return Json(await DataSourceLoader.LoadAsync(orders, loadOptions));
+                return DataSourceLoader.Load(orders, loadOptions);
             }
             else
             {
-                var allOrders = _context.Orders.Select(i => new {
-                    i.OrderId,
-                    i.CustomerId,
-                    i.NumberOfItems,
-                    i.TotalPrice,
-                    i.PaymentStatus
-                });
+                if (_cache.TryGetValue(OrdersCacheKey, out IEnumerable<Order> allOrders))
+                {
+                    _logger.LogInformation("#Orders data found in cache");
+                }
+                else
+                {
+                    _logger.LogInformation("#Orders data not found in cache");
+                    allOrders = _context.Orders;
 
-                return Json(await DataSourceLoader.LoadAsync(allOrders, loadOptions));
+                    var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromSeconds(60))
+                    .SetPriority(CacheItemPriority.Normal);
+
+                    _cache.Set(OrdersCacheKey, allOrders, cacheEntryOptions);
+                }
+                return DataSourceLoader.Load(allOrders, loadOptions);
             }
         }
 
@@ -61,6 +76,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
 
             var result = _context.Orders.Add(model);
             await _context.SaveChangesAsync();
+            _cache.Remove(OrdersCacheKey);
 
             return Json(new { result.Entity.OrderId });
         }
@@ -78,6 +94,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
                 return BadRequest(GetFullErrorMessage(ModelState));
 
             await _context.SaveChangesAsync();
+            _cache.Remove(OrdersCacheKey);
             return Ok();
         }
 
@@ -86,9 +103,9 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             var model = await _context.Orders.FirstOrDefaultAsync(item => item.OrderId == key);
 
             _context.Orders.Remove(model);
+            _cache.Remove(OrdersCacheKey);
             await _context.SaveChangesAsync();
         }
-
 
         [HttpGet]
         public async Task<IActionResult> CustomersLookup(DataSourceLoadOptions loadOptions, int? custId)

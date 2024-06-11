@@ -1,9 +1,9 @@
 /*!
 * DevExtreme (dx.messages.en.js)
-* Version: 21.1.4
-* Build date: Mon Jun 21 2021
+* Version: 22.1.3
+* Build date: Mon Jun 13 2022
 *
-* Copyright (c) 2012 - 2021 Developer Express Inc. ALL RIGHTS RESERVED
+* Copyright (c) 2012 - 2022 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
@@ -69,8 +69,8 @@
             "dxDateBox-simulatedDataPickerTitleDate": "Select date",
             "dxDateBox-simulatedDataPickerTitleDateTime": "Select date and time",
             "dxDateBox-validation-datetime": "Value must be a date or time",
-            "dxFileUploader-selectFile": "Select file",
-            "dxFileUploader-dropFile": "or Drop file here",
+            "dxFileUploader-selectFile": "Select a file",
+            "dxFileUploader-dropFile": "or Drop a file here",
             "dxFileUploader-bytes": "bytes",
             "dxFileUploader-kb": "kb",
             "dxFileUploader-Mb": "Mb",
@@ -150,8 +150,8 @@
             "dxDataGrid-exporting": "Exporting...",
             "dxDataGrid-excelFormat": "Excel file",
             "dxDataGrid-selectedRows": "Selected rows",
-            "dxDataGrid-exportSelectedRows": "Export selected rows",
-            "dxDataGrid-exportAll": "Export all data",
+            "dxDataGrid-exportSelectedRows": "Export selected rows to {0}",
+            "dxDataGrid-exportAll": "Export all data to {0}",
             "dxDataGrid-headerFilterEmptyValue": "(Blanks)",
             "dxDataGrid-headerFilterOK": "OK",
             "dxDataGrid-headerFilterCancel": "Cancel",
@@ -290,6 +290,13 @@
             "dxHtmlEditor-dialogInsertTableRowsField": "Rows",
             "dxHtmlEditor-dialogInsertTableColumnsField": "Columns",
             "dxHtmlEditor-dialogInsertTableCaption": "Insert Table",
+            "dxHtmlEditor-dialogUpdateImageCaption": "Update Image",
+            "dxHtmlEditor-dialogImageUpdateButton": "Update",
+            "dxHtmlEditor-dialogImageAddButton": "Add",
+            "dxHtmlEditor-dialogImageSpecifyUrl": "From the Web",
+            "dxHtmlEditor-dialogImageSelectFile": "From This Device",
+            "dxHtmlEditor-dialogImageKeepAspectRatio": "Keep Aspect Ratio",
+            "dxHtmlEditor-dialogImageEncodeToBase64": "Encode to Base64",
             "dxHtmlEditor-heading": "Heading",
             "dxHtmlEditor-normalText": "Normal text",
             "dxHtmlEditor-background": "Background Color",
@@ -320,6 +327,7 @@
             "dxHtmlEditor-redo": "Redo",
             "dxHtmlEditor-clear": "Clear Formatting",
             "dxHtmlEditor-insertTable": "Insert Table",
+            "dxHtmlEditor-insertHeaderRow": "Insert Header Row",
             "dxHtmlEditor-insertRowAbove": "Insert Row Above",
             "dxHtmlEditor-insertRowBelow": "Insert Row Below",
             "dxHtmlEditor-insertColumnLeft": "Insert Column Left",
@@ -327,6 +335,23 @@
             "dxHtmlEditor-deleteColumn": "Delete Column",
             "dxHtmlEditor-deleteRow": "Delete Row",
             "dxHtmlEditor-deleteTable": "Delete Table",
+            "dxHtmlEditor-cellProperties": "Cell Properties",
+            "dxHtmlEditor-tableProperties": "Table Properties",
+            "dxHtmlEditor-insert": "Insert",
+            "dxHtmlEditor-delete": "Delete",
+            "dxHtmlEditor-border": "Border",
+            "dxHtmlEditor-style": "Style",
+            "dxHtmlEditor-width": "Width",
+            "dxHtmlEditor-height": "Height",
+            "dxHtmlEditor-borderColor": "Color",
+            "dxHtmlEditor-tableBackground": "Background",
+            "dxHtmlEditor-dimensions": "Dimensions",
+            "dxHtmlEditor-alignment": "Alignment",
+            "dxHtmlEditor-horizontal": "Horizontal",
+            "dxHtmlEditor-vertical": "Vertical",
+            "dxHtmlEditor-paddingVertical": "Vertical Padding",
+            "dxHtmlEditor-paddingHorizontal": "Horizontal Padding",
+            "dxHtmlEditor-pixels": "Pixels",
             "dxHtmlEditor-list": "List",
             "dxHtmlEditor-ordered": "Ordered",
             "dxHtmlEditor-bullet": "Bullet",
@@ -491,7 +516,7 @@
             "dxDiagram-dialogInsertShapeImageTitle": "Insert Image",
             "dxDiagram-dialogEditShapeImageTitle": "Change Image",
             "dxDiagram-dialogEditShapeImageSelectButton": "Select image",
-            "dxDiagram-dialogEditShapeImageLabelText": "or drop file here",
+            "dxDiagram-dialogEditShapeImageLabelText": "or drop a file here",
             "dxDiagram-uiExport": "Export",
             "dxDiagram-uiProperties": "Properties",
             "dxDiagram-uiSettings": "Settings",
@@ -573,6 +598,10 @@
             "dxGantt-dialogCancelOperationMessage": "Cancel the operation",
             "dxGantt-dialogDeleteDependencyMessage": "Delete the dependency",
             "dxGantt-dialogMoveTaskAndKeepDependencyMessage": "Move the task and keep the dependency",
+            "dxGantt-dialogConstraintCriticalViolationSeveralTasksMessage": "The task you are attempting to move is linked to another tasks by dependency relations. This change would conflict with dependency rules. How would you like to proceed?",
+            "dxGantt-dialogConstraintViolationSeveralTasksMessage": "The task you are attempting to move is linked to another tasks by dependency relations. How would you like to proceed?",
+            "dxGantt-dialogDeleteDependenciesMessage": "Delete the dependency relations",
+            "dxGantt-dialogMoveTaskAndKeepDependenciesMessage": "Move the task and keep the dependencies",
             "dxGantt-undo": "Undo",
             "dxGantt-redo": "Redo",
             "dxGantt-expandAll": "Expand All",
@@ -582,7 +611,14 @@
             "dxGantt-zoomIn": "Zoom In",
             "dxGantt-zoomOut": "Zoom Out",
             "dxGantt-fullScreen": "Full Screen",
-            "dxGantt-quarter": "Q{0}"
+            "dxGantt-quarter": "Q{0}",
+            "dxGantt-sortingAscendingText": "Sort Ascending",
+            "dxGantt-sortingDescendingText": "Sort Descending",
+            "dxGantt-sortingClearText": "Clear Sorting",
+            "dxGantt-showResources": "Show Resources",
+            "dxGantt-showDependencies": "Show Dependencies",
+            "dxGantt-dialogStartDateValidation": "Start date must be after {0}",
+            "dxGantt-dialogEndDateValidation": "End date must be after {0}"
         }
     })
 }));

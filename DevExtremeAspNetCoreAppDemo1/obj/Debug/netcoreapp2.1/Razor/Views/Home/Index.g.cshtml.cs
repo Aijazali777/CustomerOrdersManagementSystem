@@ -65,7 +65,7 @@ using DevExtreme.AspNet.Mvc;
             WriteLiteral("\r\n<h3>Home</h3>\r\n\r\n<div>\r\n    ");
             EndContext();
             BeginContext(60, 55, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8e221c4a4c10418c9d9881bad4a556d2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "7b7416519e1a489ea798a78eaa8292d0", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

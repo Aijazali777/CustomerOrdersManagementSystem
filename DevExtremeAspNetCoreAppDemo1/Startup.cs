@@ -24,9 +24,11 @@ namespace DevExtremeAspNetCoreAppDemo1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
             services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CustomerDBConnection")));
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddScoped<ICustomerRepository, SQLCustomerRepository>();
+            services.AddResponseCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +43,14 @@ namespace DevExtremeAspNetCoreAppDemo1
                 app.UseExceptionHandler("Home//Error");
             }
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers["Cache-Control"] = "public,max-age=120";
+                }
+            });
+          
             app.UseMvcWithDefaultRoute();
         }
     }

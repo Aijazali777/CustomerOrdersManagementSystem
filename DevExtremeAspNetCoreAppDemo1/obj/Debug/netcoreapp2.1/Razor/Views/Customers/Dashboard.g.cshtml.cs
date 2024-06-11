@@ -71,7 +71,7 @@ using DevExtreme.AspNet.Mvc;
             WriteLiteral("\r\n<h3>Dashboard</h3>\r\n\r\n<div>\r\n    ");
             EndContext();
             BeginContext(76, 56, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c19e254409bb48f9a5a5f065e87dbd59", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "71251586f9d2491a9000d32e4c49b3ce", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

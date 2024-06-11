@@ -1,9 +1,9 @@
 /*!
 * DevExtreme (dx.messages.sl.js)
-* Version: 21.1.4
-* Build date: Mon Jun 21 2021
+* Version: 22.1.3
+* Build date: Mon Jun 13 2022
 *
-* Copyright (c) 2012 - 2021 Developer Express Inc. ALL RIGHTS RESERVED
+* Copyright (c) 2012 - 2022 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
@@ -283,6 +283,13 @@
             "dxHtmlEditor-dialogInsertTableRowsField": "!TODO",
             "dxHtmlEditor-dialogInsertTableColumnsField": "!TODO",
             "dxHtmlEditor-dialogInsertTableCaption": "!TODO",
+            "dxHtmlEditor-dialogUpdateImageCaption": "!TODO",
+            "dxHtmlEditor-dialogImageUpdateButton": "!TODO",
+            "dxHtmlEditor-dialogImageAddButton": "!TODO",
+            "dxHtmlEditor-dialogImageSpecifyUrl": "!TODO",
+            "dxHtmlEditor-dialogImageSelectFile": "!TODO",
+            "dxHtmlEditor-dialogImageKeepAspectRatio": "!TODO",
+            "dxHtmlEditor-dialogImageEncodeToBase64": "!TODO",
             "dxHtmlEditor-heading": "Naslov",
             "dxHtmlEditor-normalText": "Obi\u010dajno besedilo",
             "dxHtmlEditor-background": "TODO",
@@ -313,6 +320,7 @@
             "dxHtmlEditor-redo": "TODO",
             "dxHtmlEditor-clear": "TODO",
             "dxHtmlEditor-insertTable": "TODO",
+            "dxHtmlEditor-insertHeaderRow": "TODO",
             "dxHtmlEditor-insertRowAbove": "TODO",
             "dxHtmlEditor-insertRowBelow": "TODO",
             "dxHtmlEditor-insertColumnLeft": "TODO",
@@ -320,6 +328,23 @@
             "dxHtmlEditor-deleteColumn": "TODO",
             "dxHtmlEditor-deleteRow": "TODO",
             "dxHtmlEditor-deleteTable": "TODO",
+            "dxHtmlEditor-cellProperties": "TODO",
+            "dxHtmlEditor-tableProperties": "TODO",
+            "dxHtmlEditor-insert": "TODO",
+            "dxHtmlEditor-delete": "TODO",
+            "dxHtmlEditor-border": "TODO",
+            "dxHtmlEditor-style": "TODO",
+            "dxHtmlEditor-width": "TODO",
+            "dxHtmlEditor-height": "TODO",
+            "dxHtmlEditor-borderColor": "TODO",
+            "dxHtmlEditor-tableBackground": "TODO",
+            "dxHtmlEditor-dimensions": "TODO",
+            "dxHtmlEditor-alignment": "TODO",
+            "dxHtmlEditor-horizontal": "TODO",
+            "dxHtmlEditor-vertical": "TODO",
+            "dxHtmlEditor-paddingVertical": "TODO",
+            "dxHtmlEditor-paddingHorizontal": "TODO",
+            "dxHtmlEditor-pixels": "TODO",
             "dxHtmlEditor-list": "TODO",
             "dxHtmlEditor-ordered": "TODO",
             "dxHtmlEditor-bullet": "TODO",
@@ -497,6 +522,10 @@
             "dxGantt-dialogCancelOperationMessage": "TODO",
             "dxGantt-dialogDeleteDependencyMessage": "TODO",
             "dxGantt-dialogMoveTaskAndKeepDependencyMessage": "TODO",
+            "dxGantt-dialogConstraintCriticalViolationSeveralTasksMessage": "TODO",
+            "dxGantt-dialogConstraintViolationSeveralTasksMessage": "TODO",
+            "dxGantt-dialogDeleteDependenciesMessage": "TODO",
+            "dxGantt-dialogMoveTaskAndKeepDependenciesMessage": "TODO",
             "dxGantt-undo": "TODO",
             "dxGantt-redo": "TODO",
             "dxGantt-expandAll": "TODO",
@@ -506,7 +535,14 @@
             "dxGantt-zoomIn": "TODO",
             "dxGantt-zoomOut": "TODO",
             "dxGantt-fullScreen": "TODO",
-            "dxGantt-quarter": "TODO"
+            "dxGantt-quarter": "TODO",
+            "dxGantt-sortingAscendingText": "Razvrsti nara\u0161\u010dajo\u010de",
+            "dxGantt-sortingDescendingText": "Razvrsti padajo\u010de",
+            "dxGantt-sortingClearText": "Brez razvr\u0161\u010danja",
+            "dxGantt-showResources": "TODO",
+            "dxGantt-showDependencies": "TODO",
+            "dxGantt-dialogStartDateValidation": "TODO",
+            "dxGantt-dialogEndDateValidation": "TODO"
         }
     })
 }));

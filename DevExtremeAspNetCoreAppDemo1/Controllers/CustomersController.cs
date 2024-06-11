@@ -12,33 +12,45 @@ using System.Linq;
 using System.Threading.Tasks;
 using DevExtremeAspNetCoreAppDemo1.Models;
 using DevExtremeAspNetCoreAppDemo1.ViewModels;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 
 namespace DevExtremeAspNetCoreAppDemo1.Controllers
 {
     public class CustomersController : Controller
     {
         private AppDbContext _context;
+        private ILogger<CustomersController> _logger;
+        private string CustomersCacheKey = "CustomersList";
+        private IMemoryCache _cache;
 
-        public CustomersController(AppDbContext context) {
+        public CustomersController(AppDbContext context, ILogger<CustomersController> logger, IMemoryCache cache)
+        {
             _context = context;
+            _logger = logger;
+            _cache = cache;
         }
 
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public IActionResult Customers()
         {
             return View();
         }
 
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public IActionResult Dashboard()
         {
             return View();
         }
 
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public IActionResult SignUp()
         {
             return View();
         }
 
         [HttpPost]
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public IActionResult ClickSignUp(Customer model)
         {
             _context.Customers.Add(model);
@@ -48,6 +60,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             return View("Login");
         }
 
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public IActionResult Login()
         {
             bool loginMessgae = false;
@@ -78,6 +91,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             }     
         }
 
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public IActionResult AdminLogin()
         {
             bool loginMessgae = false;
@@ -115,12 +129,26 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
         }
 
         [HttpGet]
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public object Get(DataSourceLoadOptions loadOptions)
         {
-            var customers = _context.Customers;
+            if(_cache.TryGetValue(CustomersCacheKey, out IEnumerable<Customer> customers))
+            {
+                _logger.LogInformation("# Customers data found in cache");
+            }
+            else
+            {
+                _logger.LogInformation("# Customers data not found in cache");
+                customers = _context.Customers;
+
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                .SetSlidingExpiration(TimeSpan.FromSeconds(60))
+                .SetPriority(CacheItemPriority.Normal);
+
+                _cache.Set(CustomersCacheKey, customers, cacheEntryOptions);
+            }
+
             return DataSourceLoader.Load(customers, loadOptions);
-            // var result = DataSourceLoader.Load(customers, loadOptions);
-            //  return Json(result);
         }
 
         [HttpPost]
@@ -135,7 +163,9 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
 
             var result = _context.Customers.Add(model);
             await _context.SaveChangesAsync();
-            
+
+            _cache.Remove(CustomersCacheKey);
+
             return Json(new { result.Entity.Id });
         }
 
@@ -153,6 +183,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
                 return BadRequest(GetFullErrorMessage(ModelState));
 
             await _context.SaveChangesAsync();
+            _cache.Remove(CustomersCacheKey);
             return Ok();
         }
 
@@ -163,6 +194,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
 
             _context.Customers.Remove(model);
             await _context.SaveChangesAsync();
+            _cache.Remove(CustomersCacheKey);
         }
 
 

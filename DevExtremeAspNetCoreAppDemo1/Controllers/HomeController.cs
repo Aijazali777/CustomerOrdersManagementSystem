@@ -18,16 +18,19 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             customerRepo = customerRepository;
         }
 
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public IActionResult Index()
         {
             return View();
         }
 
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public IActionResult About()
         {
             return View();
         }
 
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public IActionResult Contact()
         {
             return View();

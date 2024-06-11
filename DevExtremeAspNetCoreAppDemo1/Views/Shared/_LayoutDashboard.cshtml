@@ -6,7 +6,8 @@
     <!--link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" /-->
     <title>CustomerManagement</title>
     <link rel="stylesheet" href="~/css/vendor.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Site.css" />
+    <link rel="stylesheet" href="~/css/Site.css" asp-append-version="true" />
+    <link href="~/css/devextreme/dx.dark.compact.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="~/js/vendor.js" asp-append-version="true"></script>
 </head>
@@ -17,26 +18,25 @@
             <a class="navbar-brand">
                 <img src="~/images/omsLogo.png" height="30" width="30" />
             </a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a asp-action="dashboard" asp-controller="customers" class="nav-link">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a asp-action="customers" asp-controller="customers" class="nav-link">Customers</a>
-                </li>
-                <li class="nav-item">
-                    <a asp-action="orders" asp-controller="orders" class="nav-link">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a asp-action="customerorders" asp-controller="customers" class="nav-link">CustomerOrders</a>
-                </li>
-                <li class="nav-item">
-                    <a style="color:white"><i class="fa fa-user fa-2x"></i> Admin</a>
-                </li>
-                <li class="nav-item">
-                    <a asp-action="index" asp-controller="home" class="nav-link"><i class="fa fa-power-off fa-2x"></i></a>
-                </li>
-            </ul>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapseNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapseNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a asp-action="dashboard" asp-controller="customers" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="customers" asp-controller="customers" class="nav-link">Customers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="orders" asp-controller="orders" class="nav-link">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="index" asp-controller="home" class="nav-link"><i class="fa fa-power-off"> Logout</i></a>
+                    </li>
+                </ul>
+            </div>
         </nav>
 
         <div>

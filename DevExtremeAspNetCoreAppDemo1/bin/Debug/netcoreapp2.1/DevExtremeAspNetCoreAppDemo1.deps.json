@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "874fc18b730d785edab75da75e4bb4a2bbfd2ac2"
+    "signature": "51d799cabbb6f3f1e6c3e9f014192c83535cd899"
   },
   "compilationOptions": {
     "defines": [
@@ -25,10 +25,11 @@
       "DevExtremeAspNetCoreAppDemo1/1.0.0": {
         "dependencies": {
           "BuildBundlerMinifier": "2.9.406",
-          "DevExtreme.AspNet.Core": "21.1.4",
-          "DevExtreme.AspNet.Data": "2.8.2",
+          "DevExtreme.AspNet.Core": "22.1.3",
+          "DevExtreme.AspNet.Data": "2.8.6",
           "Microsoft.AspNetCore.App": "2.1.1",
-          "Microsoft.NETCore.App": "2.1.0"
+          "Microsoft.NETCore.App": "2.1.0",
+          "System.Runtime.Caching": "8.0.0"
         },
         "runtime": {
           "DevExtremeAspNetCoreAppDemo1.dll": {}
@@ -38,31 +39,31 @@
         }
       },
       "BuildBundlerMinifier/2.9.406": {},
-      "DevExtreme.AspNet.Core/21.1.4": {
+      "DevExtreme.AspNet.Core/22.1.3": {
         "dependencies": {
-          "DevExtreme.AspNet.Data": "2.8.2",
+          "DevExtreme.AspNet.Data": "2.8.6",
           "Microsoft.AspNetCore.Mvc": "2.1.1",
           "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/DevExtreme.AspNet.Core.dll": {
-            "assemblyVersion": "21.1.4.0",
-            "fileVersion": "21.1.4.0"
+            "assemblyVersion": "22.1.3.0",
+            "fileVersion": "22.1.3.0"
           }
         },
         "compile": {
           "lib/netstandard2.0/DevExtreme.AspNet.Core.dll": {}
         }
       },
-      "DevExtreme.AspNet.Data/2.8.2": {
+      "DevExtreme.AspNet.Data/2.8.6": {
         "dependencies": {
           "Microsoft.CSharp": "4.5.0",
           "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/DevExtreme.AspNet.Data.dll": {
-            "assemblyVersion": "2.8.2.0",
-            "fileVersion": "2.8.2.0"
+            "assemblyVersion": "2.8.6.0",
+            "fileVersion": "2.8.6.0"
           }
         },
         "compile": {
@@ -238,6 +239,49 @@
       "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.1.0"
+        }
+      },
+      "System.Configuration.ConfigurationManager/8.0.0": {
+        "dependencies": {
+          "System.Security.Cryptography.ProtectedData": "8.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
+        }
+      },
+      "System.Memory/4.5.5": {},
+      "System.Runtime.Caching/8.0.0": {
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "8.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Runtime.Caching.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Runtime.Caching.dll": {}
+        }
+      },
+      "System.Security.Cryptography.ProtectedData/8.0.0": {
+        "dependencies": {
+          "System.Memory": "4.5.5"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -1258,7 +1302,7 @@
           "Microsoft.Extensions.Options": "2.1.1",
           "System.Buffers": "4.5.0",
           "System.IO.Pipelines": "4.5.0",
-          "System.Memory": "4.5.1",
+          "System.Memory": "4.5.5",
           "System.Numerics.Vectors": "4.5.0",
           "System.Runtime.CompilerServices.Unsafe": "4.5.1",
           "System.Security.Principal.Windows": "4.5.0"
@@ -1289,7 +1333,7 @@
           "Microsoft.Extensions.Logging.Abstractions": "2.1.1",
           "Microsoft.Extensions.Options": "2.1.1",
           "Microsoft.Net.Http.Headers": "2.1.1",
-          "System.Memory": "4.5.1",
+          "System.Memory": "4.5.5",
           "System.Numerics.Vectors": "4.5.0",
           "System.Runtime.CompilerServices.Unsafe": "4.5.1",
           "System.Security.Cryptography.Cng": "4.5.0",
@@ -1998,7 +2042,7 @@
       },
       "Microsoft.Extensions.Primitives/2.1.1": {
         "dependencies": {
-          "System.Memory": "4.5.1",
+          "System.Memory": "4.5.5",
           "System.Runtime.CompilerServices.Unsafe": "4.5.1"
         },
         "compile": {
@@ -2565,9 +2609,6 @@
           "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0"
         },
-        "compileOnly": true
-      },
-      "System.Memory/4.5.1": {
         "compileOnly": true
       },
       "System.Net.Http/4.3.0": {
@@ -3198,19 +3239,19 @@
       "path": "buildbundlerminifier/2.9.406",
       "hashPath": "buildbundlerminifier.2.9.406.nupkg.sha512"
     },
-    "DevExtreme.AspNet.Core/21.1.4": {
+    "DevExtreme.AspNet.Core/22.1.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-x+3VqH+rqHRbo39vHYBsgOhmzbS6QmaDOhqckkIC/mcelXglgWGAqbl+BC/gZbzYwCca7Fi2SWM+SeJNG6t9vA==",
-      "path": "devextreme.aspnet.core/21.1.4",
-      "hashPath": "devextreme.aspnet.core.21.1.4.nupkg.sha512"
+      "sha512": "sha512-3ZMAutCX0krgvRy4bTUKuhjrY4KnaIu5gqT650KSWQIbkE07PzCsfOnWv1tSvjBd6CG3ko/IobMhg+tKVxtR6g==",
+      "path": "devextreme.aspnet.core/22.1.3",
+      "hashPath": "devextreme.aspnet.core.22.1.3.nupkg.sha512"
     },
-    "DevExtreme.AspNet.Data/2.8.2": {
+    "DevExtreme.AspNet.Data/2.8.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-y1TXRAcJXhzllwNYAVyMZhiM0J8TghGNhxMjKk0ihxK0agYo1LfPZbDInysH0FrlNKd8QeV2yvvVAaURzWWnBA==",
-      "path": "devextreme.aspnet.data/2.8.2",
-      "hashPath": "devextreme.aspnet.data.2.8.2.nupkg.sha512"
+      "sha512": "sha512-i1yihftbQALysX/Sh5rm4XFVRKPXKwHcmfH8esD0fTH+RTPGpMmIUoYOg2oAAOxqJsi/F5IQ8Gkp60lDzOigRA==",
+      "path": "devextreme.aspnet.data/2.8.6",
+      "hashPath": "devextreme.aspnet.data.2.8.6.nupkg.sha512"
     },
     "Microsoft.NETCore.App/2.1.0": {
       "type": "package",
@@ -3260,6 +3301,34 @@
       "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    },
+    "System.Configuration.ConfigurationManager/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JlYi9XVvIREURRUlGMr1F6vOFLk7YSY4p1vHo4kX3tQ0AGrjqlRWHDi66ImHhy6qwXBG3BJ6Y1QlYQ+Qz6Xgww==",
+      "path": "system.configuration.configurationmanager/8.0.0",
+      "hashPath": "system.configuration.configurationmanager.8.0.0.nupkg.sha512"
+    },
+    "System.Memory/4.5.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XIWiDvKPXaTveaB7HVganDlOCRoj03l+jrwNvcge/t8vhGYKvqV+dMv6G4SAX2NoNmN0wZfVPTAlFwZcZvVOUw==",
+      "path": "system.memory/4.5.5",
+      "hashPath": "system.memory.4.5.5.nupkg.sha512"
+    },
+    "System.Runtime.Caching/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4TmlmvGp4kzZomm7J2HJn6IIx0UUrQyhBDyb5O1XiunZlQImXW+B8b7W/sTPcXhSf9rp5NR5aDtQllwbB5elOQ==",
+      "path": "system.runtime.caching/8.0.0",
+      "hashPath": "system.runtime.caching.8.0.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.ProtectedData/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+TUFINV2q2ifyXauQXRwy4CiBhqvDEDZeVJU7qfxya4aRYOKzVBpN+4acx25VcPB9ywUN6C0n8drWl110PhZEg==",
+      "path": "system.security.cryptography.protecteddata/8.0.0",
+      "hashPath": "system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "type": "package",
@@ -4751,13 +4820,6 @@
       "sha512": "sha512-Yn/WfYe9RoRfmSLvUt2JerP0BTGGykCZkQPgojaxgzF2N0oPo+/AhB8TXOpdCcNlrG3VRtsamtK2uzsp3cqRVw==",
       "path": "system.linq.queryable/4.0.1",
       "hashPath": "system.linq.queryable.4.0.1.nupkg.sha512"
-    },
-    "System.Memory/4.5.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-sDJYJpGtTgx+23Ayu5euxG5mAXWdkDb4+b0rD0Cab0M1oQS9H0HXGPriKcqpXuiJDTV7fTp/d+fMDJmnr6sNvA==",
-      "path": "system.memory/4.5.1",
-      "hashPath": "system.memory.4.5.1.nupkg.sha512"
     },
     "System.Net.Http/4.3.0": {
       "type": "package",

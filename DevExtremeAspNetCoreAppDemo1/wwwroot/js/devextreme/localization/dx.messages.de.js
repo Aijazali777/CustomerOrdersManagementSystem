@@ -1,9 +1,9 @@
 /*!
 * DevExtreme (dx.messages.de.js)
-* Version: 21.1.4
-* Build date: Mon Jun 21 2021
+* Version: 22.1.3
+* Build date: Mon Jun 13 2022
 *
-* Copyright (c) 2012 - 2021 Developer Express Inc. ALL RIGHTS RESERVED
+* Copyright (c) 2012 - 2022 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
@@ -150,8 +150,8 @@
             "dxDataGrid-exporting": "Exportieren ...",
             "dxDataGrid-excelFormat": "Excel-Datei",
             "dxDataGrid-selectedRows": "Ausgew\xe4hlte Zeilen",
-            "dxDataGrid-exportAll": "Alle Daten exportieren",
-            "dxDataGrid-exportSelectedRows": "Ausgew\xe4hlte Zeilen exportieren",
+            "dxDataGrid-exportAll": "Alle Daten exportieren nach {0}",
+            "dxDataGrid-exportSelectedRows": "Ausgew\xe4hlte Zeilen exportieren nach {0}",
             "dxDataGrid-headerFilterEmptyValue": "(Leerwerte)",
             "dxDataGrid-headerFilterOK": "OK",
             "dxDataGrid-headerFilterCancel": "Abbrechen",
@@ -290,6 +290,13 @@
             "dxHtmlEditor-dialogInsertTableRowsField": "Zeilen",
             "dxHtmlEditor-dialogInsertTableColumnsField": "Spalten",
             "dxHtmlEditor-dialogInsertTableCaption": "Tabelle einf\xfcgen",
+            "dxHtmlEditor-dialogUpdateImageCaption": "Bild Aktualisieren",
+            "dxHtmlEditor-dialogImageUpdateButton": "Aktualisieren",
+            "dxHtmlEditor-dialogImageAddButton": "Hinzuf\xfcgen",
+            "dxHtmlEditor-dialogImageSpecifyUrl": "Aus dem Web",
+            "dxHtmlEditor-dialogImageSelectFile": "Von diesem Ger\xe4t",
+            "dxHtmlEditor-dialogImageKeepAspectRatio": "Seitenverh\xe4ltnis beibehalten",
+            "dxHtmlEditor-dialogImageEncodeToBase64": "Als Base64 kodieren",
             "dxHtmlEditor-heading": "\xdcberschrift",
             "dxHtmlEditor-normalText": "Normaler Text",
             "dxHtmlEditor-background": "Hintergrundfarbe",
@@ -320,6 +327,7 @@
             "dxHtmlEditor-redo": "Wiederholen",
             "dxHtmlEditor-clear": "Formate l\xf6schen",
             "dxHtmlEditor-insertTable": "Tabelle einf\xfcgen",
+            "dxHtmlEditor-insertHeaderRow": "Kopfzeile einf\xfcgen",
             "dxHtmlEditor-insertRowAbove": "Spalte oberhalb einf\xfcgen",
             "dxHtmlEditor-insertRowBelow": "Spalte unterhalb einf\xfcgen",
             "dxHtmlEditor-insertColumnLeft": "Spalte links einf\xfcgen",
@@ -327,6 +335,23 @@
             "dxHtmlEditor-deleteColumn": "Spalte l\xf6schen",
             "dxHtmlEditor-deleteRow": "Zeile l\xf6schen",
             "dxHtmlEditor-deleteTable": "Tabelle l\xf6schen",
+            "dxHtmlEditor-cellProperties": "Zelleneigenschaften",
+            "dxHtmlEditor-tableProperties": "Tabelleneigenschaften",
+            "dxHtmlEditor-insert": "Einf\xfcgen",
+            "dxHtmlEditor-delete": "L\xf6schen",
+            "dxHtmlEditor-border": "Rahmen",
+            "dxHtmlEditor-style": "Stil",
+            "dxHtmlEditor-width": "Breite",
+            "dxHtmlEditor-height": "H\xf6he",
+            "dxHtmlEditor-borderColor": "Farbe",
+            "dxHtmlEditor-tableBackground": "Hintergrund",
+            "dxHtmlEditor-dimensions": "Abmessungen",
+            "dxHtmlEditor-alignment": "Ausrichtung",
+            "dxHtmlEditor-horizontal": "Horizontal",
+            "dxHtmlEditor-vertical": "Vertikal",
+            "dxHtmlEditor-paddingVertical": "Vertikaler Abstand",
+            "dxHtmlEditor-paddingHorizontal": "Horizontaler Abstand",
+            "dxHtmlEditor-pixels": "Pixel",
             "dxHtmlEditor-list": "Liste",
             "dxHtmlEditor-ordered": "Sortiert",
             "dxHtmlEditor-bullet": "Aufz\xe4hlung",
@@ -573,6 +598,10 @@
             "dxGantt-dialogCancelOperationMessage": "Vorgang abbrechen",
             "dxGantt-dialogDeleteDependencyMessage": "Abh\xe4ngigkeit l\xf6schen",
             "dxGantt-dialogMoveTaskAndKeepDependencyMessage": "Aufgabe verschieben und Abh\xe4ngigkeit beibehalten",
+            "dxGantt-dialogConstraintCriticalViolationSeveralTasksMessage": "Die Aufgabe, die Sie zu verschieben versuchen, ist mit anderen Aufgaben durch Abh\xe4ngigkeitsbeziehungen verbunden. Die \xc4nderung verst\xf6\xdft daher gegen Abh\xe4ngigkeitsregeln. Wie m\xf6chten Sie fortfahren?",
+            "dxGantt-dialogConstraintViolationSeveralTasksMessage": "Die Aufgabe, die Sie zu verschieben versuchen, ist mit anderen Aufgaben durch Abh\xe4ngigkeitsbeziehungen verbunden. Wie m\xf6chten Sie fortfahren?",
+            "dxGantt-dialogDeleteDependenciesMessage": "Abh\xe4ngigkeitsbeziehungen entfernen",
+            "dxGantt-dialogMoveTaskAndKeepDependenciesMessage": "Die Aufgabe verschieben und die Abh\xe4ngigkeitsbeziehungen beibehalten.",
             "dxGantt-undo": "R\xfcckg\xe4ngig",
             "dxGantt-redo": "Wiederherstellen",
             "dxGantt-expandAll": "Alle erweitern",
@@ -582,7 +611,14 @@
             "dxGantt-zoomIn": "Vergr\xf6\xdfern",
             "dxGantt-zoomOut": "Verkleinern",
             "dxGantt-fullScreen": "Vollbildmodus",
-            "dxGantt-quarter": "Q{0}"
+            "dxGantt-quarter": "Q{0}",
+            "dxGantt-sortingAscendingText": "Aufsteigend sortieren",
+            "dxGantt-sortingDescendingText": "Absteigend sortieren",
+            "dxGantt-sortingClearText": "Sortierung aufheben",
+            "dxGantt-showResources": "Ressourcen Anzeigen",
+            "dxGantt-showDependencies": "Abh\xe4ngigkeiten Anzeigen",
+            "dxGantt-dialogStartDateValidation": "Startdatum muss sp\xe4ter sein als {0}",
+            "dxGantt-dialogEndDateValidation": "Enddatum muss sp\xe4ter sein als {0}"
         }
     })
 }));
