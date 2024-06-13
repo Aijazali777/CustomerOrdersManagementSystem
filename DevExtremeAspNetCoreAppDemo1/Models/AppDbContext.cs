@@ -16,15 +16,23 @@ namespace DevExtremeAspNetCoreAppDemo1.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Admin> Admin { get; set; }
+        public DbSet<CryptoOrder> CryptoOrders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>().HasKey(e => e.Id);
+            modelBuilder.Entity<CryptoOrder>().HasKey(e => e.CryptoId);
 
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.HasOne(e => e.Customers)
                 .WithMany(e => e.Orders).HasForeignKey(e => e.CustomerId).IsRequired();
+            });
+
+            modelBuilder.Entity<CryptoOrder>(entity =>
+            {
+                entity.HasOne(e => e.Customers)
+                .WithMany(e => e.CryptoOrders).HasForeignKey(e => e.CustomerId).IsRequired();
             });
 
             modelBuilder.Entity<Customer>().HasData(
@@ -78,7 +86,8 @@ namespace DevExtremeAspNetCoreAppDemo1.Models
                     Name = "James",
                     Phone = 11230001,
                     Email = "james@custorderpro.com"
-            });
+                }
+          );
         }
     }
     

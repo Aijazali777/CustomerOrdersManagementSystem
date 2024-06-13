@@ -76,7 +76,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
                 var cust = _context.Customers.FirstOrDefault(e => e.Name == model.Name && e.Password == model.Password);
                 if (cust != null)
                 {
-                    return View("CustomerOrderView", cust);
+                    return View("UserCustomerView", cust);
                 }
                 else
                 {
@@ -107,7 +107,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
                 var admin = _context.Admin.FirstOrDefault(a => a.Username == model.Username && a.Password == model.Password);
                 if (admin != null)
                 {
-                    return View("Dashboard");
+                    return View("CustomerOrderView");
                 }
                 else
                 {
@@ -132,22 +132,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
         [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public object Get(DataSourceLoadOptions loadOptions)
         {
-            if(_cache.TryGetValue(CustomersCacheKey, out IEnumerable<Customer> customers))
-            {
-                _logger.LogInformation("# Customers data found in cache");
-            }
-            else
-            {
-                _logger.LogInformation("# Customers data not found in cache");
-                customers = _context.Customers;
-
-                var cacheEntryOptions = new MemoryCacheEntryOptions()
-                .SetSlidingExpiration(TimeSpan.FromSeconds(60))
-                .SetPriority(CacheItemPriority.Normal);
-
-                _cache.Set(CustomersCacheKey, customers, cacheEntryOptions);
-            }
-
+            var  customers = _context.Customers;
             return DataSourceLoader.Load(customers, loadOptions);
         }
 
@@ -259,22 +244,12 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             return String.Join(" ", messages);
         }
 
-        public IActionResult CustomerOrders()
+        public IActionResult CustomerOrderView()
         {
-            int customerId = 1;
-            var customerOrders = _context.Customers.Where(c => c.Id == customerId).Select(c => new CustomerOrdersViewModel
-            {
-                CustomerId = c.Id,
-                CustomerName = c.Name,
-                CustomerAddress = c.Address,
-                Orders = c.Orders.ToList()
-            })
-            .FirstOrDefault();
-
-            return View(customerOrders);
+            return View();
         }
 
-        public IActionResult CustomerOrderView()
+        public IActionResult CustomerOrders()
         {
             int customerId = 1;
             var customerOrders = _context.Customers.Where(c => c.Id == customerId).Select(c => new CustomerOrdersViewModel

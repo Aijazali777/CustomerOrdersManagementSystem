@@ -38,7 +38,6 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
         [HttpGet]
         public object Get(DataSourceLoadOptions loadOptions, int? customerId)
         {
-            
             if (customerId != null)
             {
                 var orders = _context.Orders.Where(order => order.CustomerId == customerId);
@@ -46,21 +45,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             }
             else
             {
-                if (_cache.TryGetValue(OrdersCacheKey, out IEnumerable<Order> allOrders))
-                {
-                    _logger.LogInformation("#Orders data found in cache");
-                }
-                else
-                {
-                    _logger.LogInformation("#Orders data not found in cache");
-                    allOrders = _context.Orders;
-
-                    var cacheEntryOptions = new MemoryCacheEntryOptions()
-                    .SetSlidingExpiration(TimeSpan.FromSeconds(60))
-                    .SetPriority(CacheItemPriority.Normal);
-
-                    _cache.Set(OrdersCacheKey, allOrders, cacheEntryOptions);
-                }
+                var allOrders = _context.Orders;
                 return DataSourceLoader.Load(allOrders, loadOptions);
             }
         }

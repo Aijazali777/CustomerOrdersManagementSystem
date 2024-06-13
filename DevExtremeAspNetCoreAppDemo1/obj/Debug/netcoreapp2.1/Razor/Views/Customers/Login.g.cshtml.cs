@@ -116,7 +116,7 @@ using DevExtreme.AspNet.Mvc;
     WriteLiteral("\r\n                                <div style=\"text-align: center\">\r\n                                    Not registered? ");
     EndContext();
     BeginContext(1522, 77, false);
-    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7937b2b6b8ff451ba8b2746a552a8460", async() => {
+    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5932e49f1c964483a93bcd6a99766ca6", async() => {
         BeginContext(1572, 23, true);
         WriteLiteral("Click here to register!");
         EndContext();
@@ -140,7 +140,7 @@ using DevExtreme.AspNet.Mvc;
     WriteLiteral("<br />\r\n                                    ");
     EndContext();
     BeginContext(1643, 72, false);
-    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0445934eaa614764b1bcc6952f177f11", async() => {
+    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a720bf079cd64dbfa88a038469db450a", async() => {
         BeginContext(1697, 14, true);
         WriteLiteral("Login as admin");
         EndContext();
