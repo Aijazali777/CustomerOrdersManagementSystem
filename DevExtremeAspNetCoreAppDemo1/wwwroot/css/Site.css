@@ -1,41 +1,13 @@
-.custom-body {
-    background-color: #708090;
-}
-
-.cust-details {
-    padding:10px;
-    left: 10px;
-}
-
-.custom-label-textbox {
-    display: flex;
-    align-items: center;
-    font-size: large;
-    font-weight:bold;
-}
-
-.custom-label-textbox label {
-    display: inline-block;
-    width: 100px; /* Adjust as needed */
-    text-align: left;
-    margin-right: 10px;
-    border: 1px solid #ccc; /* Border around the label */
-}
-
-h3 {
-    font-size: 2em;
-    margin-top: 0.75em;
-    margin-bottom: 0.75em;
-}
 
 h1, h4, p {
-    margin-top: 0.75em;
+    margin-top: 20px;
     text-align: center;
 }
 
 .ImageThumbail {
     margin-left: auto;
     margin-right: auto;
+    margin-top: 50px;
     max-width: 500px;
     display:block;
 }
@@ -44,7 +16,7 @@ h1, h4, p {
     background-color: lightsteelblue;
     padding: 20px;
     border-radius: 5px;
-    margin-top: 2.5%;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -54,20 +26,20 @@ h1, h4, p {
 
 .custom-headerlabel{
     text-align:center;
-    font-size: 2em;
-    margin-bottom: 0.50em;
+    font-size:x-large;
+    margin-bottom: 15px;
     font-weight:bold;
 }
 
 .custom-input {
-    border-radius: 4px; /* Rounded corners for inputs */
-    padding: 5px; /* Padding inside inputs */
-    width: 80%; /* Full width inputs */
+    border-radius: 4px;
+    padding: 5px;
+    width: 80%;
     margin-left: 10%;
 }
 
 .custom-button {
-    margin-bottom: 1em;
+    margin-bottom: 10px;
 }
 
 .footer {

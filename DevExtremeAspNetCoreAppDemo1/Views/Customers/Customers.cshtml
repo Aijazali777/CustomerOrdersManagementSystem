@@ -1,4 +1,5 @@
 ﻿@{
+    ViewData["Title"] = "Customers";
     Layout = "_LayoutAdmin";
 }
 
@@ -30,8 +31,8 @@
                 .Key("Id")
             )
             .RemoteOperations(true)
-            .ShowBorders(true)
-            .Height(855)
+            .Selection(s => s.Mode(SelectionMode.Single))
+            .Height(857)
             .Columns(columns =>
             {
                 columns.AddFor(m => m.Id).AllowEditing(false);

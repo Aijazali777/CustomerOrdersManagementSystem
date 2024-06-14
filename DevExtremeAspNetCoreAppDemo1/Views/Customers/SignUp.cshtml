@@ -1,4 +1,8 @@
-﻿@using (Html.BeginForm("ClickSignUp", "Customers", FormMethod.Post))
+﻿@{ 
+    ViewData["Title"] = "SignUp";
+}
+
+@using (Html.BeginForm("ClickSignUp", "Customers", FormMethod.Post))
 {
     <div class="custom-form">
         @(Html.DevExtreme().Form<DevExtremeAspNetCoreAppDemo1.Models.Customer>()

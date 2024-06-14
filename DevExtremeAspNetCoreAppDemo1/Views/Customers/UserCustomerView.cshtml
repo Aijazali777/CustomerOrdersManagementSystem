@@ -1,65 +1,35 @@
 ﻿@model Customer
 
 @{
+    ViewData["Title"] = "My Orders";
     Layout = "_LayoutCustomer";
 }
 
-<div class="UIControl">
+<div class="dx-viewport" style="margin:0px">
     <div>
-        <div class="custom-label-textbox">
-            @(Html.LabelFor(m => m.Id))
-            @(Html.DevExtreme().TextBox()
+        @(Html.DevExtreme().Form<DevExtremeAspNetCoreAppDemo1.Models.Customer>()
+            .FormData(Model)
             .Disabled(true)
-            .Value(@Model.Id.ToString())
-            .Width(130)
+            .Width(200)
+            .Items(items => {
 
-            )
-        </div>
-        <div class="custom-label-textbox">
-            @(Html.LabelFor(m => m.Name))
-            @(Html.DevExtreme().TextBox()
-                .Value(@Model.Name)
-                .Width(130)
-            )
-        </div>
+                items.AddSimpleFor(m => m.Id);
 
-        <div class="custom-label-textbox">
-            @(Html.LabelFor(m => m.Gender))
-            @(Html.DevExtreme().TextBox()
-                .Value(@Model.Gender)
-                .Width(130)
-            )
-        </div>
-        <div class="custom-label-textbox">
-            @(Html.LabelFor(m => m.Phone))
-            @(Html.DevExtreme().TextBox()
-                .Value(@Model.Phone.ToString())
-                .Width(130)
-            )
-        </div>
-        <div class="custom-label-textbox">
-            @(Html.LabelFor(m => m.Address))
-            @(Html.DevExtreme().TextBox()
-                .Value(@Model.Address)
-                .Width(130)
-            )
-        </div>
-        <div class="custom-label-textbox">
-            @(Html.LabelFor(m => m.City))
-            @(Html.DevExtreme().TextBox()
-                .Value(@Model.City)
-                .Width(130)
-            )
-        </div>
-        <div class="custom-label-textbox">
-            @(Html.LabelFor(m => m.Country))
-            @(Html.DevExtreme().TextBox()
-                .Value(@Model.Country)
-                .Width(130)
-            )
-            </div>
-        </div>
+                items.AddSimpleFor(m => m.Name);
+
+                items.AddSimpleFor(m => m.Gender);
+
+                items.AddSimpleFor(m => m.Phone);
+
+                items.AddSimpleFor(m => m.Address);
+
+                items.AddSimpleFor(m => m.City);
+
+                items.AddSimpleFor(m => m.Country);
+            })
+        )
     </div>
+</div>
 
 <div>
     @(Html.DevExtreme().Accordion()
@@ -120,7 +90,7 @@
             .Mode(SelectionMode.Single)
             )
             .RemoteOperations(true)
-            .Height(665)
+            .Height(new JS("orderGridHeight"))
             .Columns(columns =>
             {
                 columns.AddFor(m => m.OrderId).AllowEditing(false);
@@ -165,27 +135,23 @@
             .Selection(s => s
             .Mode(SelectionMode.Single)
             )
-            .Scrolling(scrolling => scrolling
-                .ColumnRenderingMode(GridColumnRenderingMode.Virtual)
-                .ShowScrollbar(ShowScrollbarMode.Always)
-            )
             .RemoteOperations(true)
-            .Height(665)
+            .Height(new JS("cryptoOrderGridHeight"))
             .Columns(columns =>
             {
 
                 columns.AddFor(m => m.CryptoId).AllowEditing(false);
 
                 columns.AddFor(m => m.CustomerId).Lookup(lookup => lookup
-                            .DataSource(ds => ds.WebApi()
-                                .Controller("Orders")
-                                .LoadParams(new { CustomerId = @Model.Id })
-                                .LoadAction("CustomersLookup")
-                                .Key("Value")
-                            )
-                            .ValueExpr("Value")
-                            .DisplayExpr("Text")
-                        );
+                    .DataSource(ds => ds.WebApi()
+                        .Controller("Orders")
+                        .LoadParams(new { CustomerId = @Model.Id })
+                        .LoadAction("CustomersLookup")
+                        .Key("Value")
+                    )
+                    .ValueExpr("Value")
+                    .DisplayExpr("Text")
+                );
 
                 columns.AddFor(m => m.Symbol);
 
@@ -203,3 +169,7 @@
     </div>
 }
 
+<script>
+    var orderGridHeight = $(window).height() * .576;
+    var cryptoOrderGridHeight = $(window).height() * .576;
+</script>

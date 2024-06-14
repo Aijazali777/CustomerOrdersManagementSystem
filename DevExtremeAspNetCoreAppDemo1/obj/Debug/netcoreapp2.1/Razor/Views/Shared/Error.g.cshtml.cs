@@ -24,17 +24,12 @@ using DevExtremeAspNetCoreAppDemo1.Models;
 #line default
 #line hidden
 #line 3 "C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\Views\_ViewImports.cshtml"
-using DevExtremeAspNetCoreAppDemo1.ViewModels;
-
-#line default
-#line hidden
-#line 5 "C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\Views\_ViewImports.cshtml"
 using DevExtreme.AspNet.Mvc;
 
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9c44a50dd9509f582302f8ee6f7ef184a9afc454", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"10a737c4be0bb9561789261b7c39d890207533ac", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7493713313bce1859f9bee1b5d6fc83a49b71fd5", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

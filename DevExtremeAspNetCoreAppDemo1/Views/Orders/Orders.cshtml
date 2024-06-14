@@ -1,4 +1,5 @@
 ﻿@{
+    ViewData["Title"] = "Product Orders";
     Layout = "_LayoutAdmin";
 }
 
@@ -27,7 +28,8 @@
             .Key("OrderId")
         )
         .RemoteOperations(true)
-        .Height(855)
+        .Selection(s => s.Mode(SelectionMode.Single))
+        .Height(857)
         .Columns(columns =>
         {
             columns.AddFor(m => m.OrderId).AllowEditing(false);
