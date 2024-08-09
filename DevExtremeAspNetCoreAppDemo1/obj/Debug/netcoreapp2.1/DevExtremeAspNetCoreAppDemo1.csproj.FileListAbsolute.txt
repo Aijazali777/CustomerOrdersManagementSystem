@@ -27,13 +27,13 @@ C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAp
 C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\DevExtremeAspNetCoreAppDemo1.csproj.CopyComplete
 C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Customers\Customers.g.cshtml.cs
 C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Orders\Orders.g.cshtml.cs
-C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Customers\CustomerOrders.g.cshtml.cs
 C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Customers\SignUp.g.cshtml.cs
 C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Customers\Login.g.cshtml.cs
 C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
 C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
 C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Customers\AdminLogin.g.cshtml.cs
-C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Customers\Dashboard.g.cshtml.cs
-C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LayoutDashboard.g.cshtml.cs
 C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Customers\CustomerOrderView.g.cshtml.cs
 C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LayoutCustomer.g.cshtml.cs
+C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LayoutAdmin.g.cshtml.cs
+C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\CryptoOrders\CryptoOrders.g.cshtml.cs
+C:\Users\aaijaz\source\repos\DevExtremeAspNetCoreAppDemo1\DevExtremeAspNetCoreAppDemo1\obj\Debug\netcoreapp2.1\Razor\Views\Customers\UserCustomerView.g.cshtml.cs

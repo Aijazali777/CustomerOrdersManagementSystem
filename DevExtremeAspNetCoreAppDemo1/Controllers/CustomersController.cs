@@ -7,28 +7,19 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using DevExtremeAspNetCoreAppDemo1.Models;
-using DevExtremeAspNetCoreAppDemo1.ViewModels;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Logging;
 
 namespace DevExtremeAspNetCoreAppDemo1.Controllers
 {
     public class CustomersController : Controller
     {
         private AppDbContext _context;
-        private ILogger<CustomersController> _logger;
-        private string CustomersCacheKey = "CustomersList";
-        private IMemoryCache _cache;
 
-        public CustomersController(AppDbContext context, ILogger<CustomersController> logger, IMemoryCache cache)
+        public CustomersController(AppDbContext context)
         {
             _context = context;
-            _logger = logger;
-            _cache = cache;
         }
 
         [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
@@ -37,8 +28,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
-        public IActionResult Dashboard()
+        public IActionResult CustomerOrderView()
         {
             return View();
         }
@@ -76,7 +66,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
                 var cust = _context.Customers.FirstOrDefault(e => e.Name == model.Name && e.Password == model.Password);
                 if (cust != null)
                 {
-                    return View("CustomerOrderView", cust);
+                    return View("UserCustomerView", cust);
                 }
                 else
                 {
@@ -107,7 +97,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
                 var admin = _context.Admin.FirstOrDefault(a => a.Username == model.Username && a.Password == model.Password);
                 if (admin != null)
                 {
-                    return View("Dashboard");
+                    return View("CustomerOrderView");
                 }
                 else
                 {
@@ -122,32 +112,11 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             }
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View();
-        }
-
         [HttpGet]
         [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
         public object Get(DataSourceLoadOptions loadOptions)
         {
-            if(_cache.TryGetValue(CustomersCacheKey, out IEnumerable<Customer> customers))
-            {
-                _logger.LogInformation("# Customers data found in cache");
-            }
-            else
-            {
-                _logger.LogInformation("# Customers data not found in cache");
-                customers = _context.Customers;
-
-                var cacheEntryOptions = new MemoryCacheEntryOptions()
-                .SetSlidingExpiration(TimeSpan.FromSeconds(60))
-                .SetPriority(CacheItemPriority.Normal);
-
-                _cache.Set(CustomersCacheKey, customers, cacheEntryOptions);
-            }
-
+            var  customers = _context.Customers;
             return DataSourceLoader.Load(customers, loadOptions);
         }
 
@@ -163,8 +132,6 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
 
             var result = _context.Customers.Add(model);
             await _context.SaveChangesAsync();
-
-            _cache.Remove(CustomersCacheKey);
 
             return Json(new { result.Entity.Id });
         }
@@ -183,7 +150,6 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
                 return BadRequest(GetFullErrorMessage(ModelState));
 
             await _context.SaveChangesAsync();
-            _cache.Remove(CustomersCacheKey);
             return Ok();
         }
 
@@ -194,7 +160,6 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
 
             _context.Customers.Remove(model);
             await _context.SaveChangesAsync();
-            _cache.Remove(CustomersCacheKey);
         }
 
 
@@ -247,6 +212,12 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             }
         }
 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View();
+        }
+
         private string GetFullErrorMessage(ModelStateDictionary modelState)
         {
             var messages = new List<string>();
@@ -257,36 +228,6 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             }
 
             return String.Join(" ", messages);
-        }
-
-        public IActionResult CustomerOrders()
-        {
-            int customerId = 1;
-            var customerOrders = _context.Customers.Where(c => c.Id == customerId).Select(c => new CustomerOrdersViewModel
-            {
-                CustomerId = c.Id,
-                CustomerName = c.Name,
-                CustomerAddress = c.Address,
-                Orders = c.Orders.ToList()
-            })
-            .FirstOrDefault();
-
-            return View(customerOrders);
-        }
-
-        public IActionResult CustomerOrderView()
-        {
-            int customerId = 1;
-            var customerOrders = _context.Customers.Where(c => c.Id == customerId).Select(c => new CustomerOrdersViewModel
-            {
-                CustomerId = c.Id,
-                CustomerName = c.Name,
-                CustomerAddress = c.Address,
-                Orders = c.Orders.ToList()
-            })
-            .FirstOrDefault();
-
-            return View(customerOrders);
         }
     }
 }

@@ -19,15 +19,10 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
     public class OrdersController : Controller
     {
         private AppDbContext _context;
-        private ILogger<OrdersController> _logger;
-        private string OrdersCacheKey = "OrdersList";
-        private IMemoryCache _cache;
 
-        public OrdersController(AppDbContext context, ILogger<OrdersController> logger, IMemoryCache cache)
+        public OrdersController(AppDbContext context)
         {
             _context = context;
-            _logger = logger;
-            _cache = cache;
         }
 
         public IActionResult Orders()
@@ -38,7 +33,6 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
         [HttpGet]
         public object Get(DataSourceLoadOptions loadOptions, int? customerId)
         {
-            
             if (customerId != null)
             {
                 var orders = _context.Orders.Where(order => order.CustomerId == customerId);
@@ -46,21 +40,7 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             }
             else
             {
-                if (_cache.TryGetValue(OrdersCacheKey, out IEnumerable<Order> allOrders))
-                {
-                    _logger.LogInformation("#Orders data found in cache");
-                }
-                else
-                {
-                    _logger.LogInformation("#Orders data not found in cache");
-                    allOrders = _context.Orders;
-
-                    var cacheEntryOptions = new MemoryCacheEntryOptions()
-                    .SetSlidingExpiration(TimeSpan.FromSeconds(60))
-                    .SetPriority(CacheItemPriority.Normal);
-
-                    _cache.Set(OrdersCacheKey, allOrders, cacheEntryOptions);
-                }
+                var allOrders = _context.Orders;
                 return DataSourceLoader.Load(allOrders, loadOptions);
             }
         }
@@ -76,8 +56,6 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
 
             var result = _context.Orders.Add(model);
             await _context.SaveChangesAsync();
-            _cache.Remove(OrdersCacheKey);
-
             return Json(new { result.Entity.OrderId });
         }
 
@@ -94,7 +72,6 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
                 return BadRequest(GetFullErrorMessage(ModelState));
 
             await _context.SaveChangesAsync();
-            _cache.Remove(OrdersCacheKey);
             return Ok();
         }
 
@@ -103,7 +80,6 @@ namespace DevExtremeAspNetCoreAppDemo1.Controllers
             var model = await _context.Orders.FirstOrDefaultAsync(item => item.OrderId == key);
 
             _context.Orders.Remove(model);
-            _cache.Remove(OrdersCacheKey);
             await _context.SaveChangesAsync();
         }
 

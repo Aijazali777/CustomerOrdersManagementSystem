@@ -1,0 +1,175 @@
+﻿@model Customer
+
+@{
+    ViewData["Title"] = "My Orders";
+    Layout = "_LayoutCustomer";
+}
+
+<div class="dx-viewport" style="margin:0px">
+    <div>
+        @(Html.DevExtreme().Form<DevExtremeAspNetCoreAppDemo1.Models.Customer>()
+            .FormData(Model)
+            .Disabled(true)
+            .Width(200)
+            .Items(items => {
+
+                items.AddSimpleFor(m => m.Id);
+
+                items.AddSimpleFor(m => m.Name);
+
+                items.AddSimpleFor(m => m.Gender);
+
+                items.AddSimpleFor(m => m.Phone);
+
+                items.AddSimpleFor(m => m.Address);
+
+                items.AddSimpleFor(m => m.City);
+
+                items.AddSimpleFor(m => m.Country);
+            })
+        )
+    </div>
+</div>
+
+<div>
+    @(Html.DevExtreme().Accordion()
+        .ID("accordion-container")
+        .Items(it =>
+        {
+            it.Add().Title("Orders").Template(new TemplateName("OrderAccordianTemplate"));
+        }
+        )
+        .Collapsible(true)
+        .Multiple(true)
+    )
+</div>
+
+@using (Html.DevExtreme().NamedTemplate("OrderAccordianTemplate"))
+{
+    <div class="row">
+        <div class="col-6">
+            <div>
+                @(Html.DevExtreme().TabPanel()
+                    .ID("OrderTabPanel")
+                    .Items(tp =>
+                    {
+                        tp.Add().Title("Product Orders").Template(new TemplateName("OrderTabTemplate"));
+                    })
+                )
+            </div>
+        </div>
+        <div class="col-6">
+            <div>
+                @(Html.DevExtreme().TabPanel()
+                    .ID("CryptoOrderTabPanel")
+                    .Items(tp =>
+                    {
+                        tp.Add().Title("Crypto Orders").Template(new TemplateName("CrytoOrderTabTemplate"));
+                    })
+                )
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.DevExtreme().NamedTemplate("OrderTabTemplate"))
+{
+    <div>
+        @(Html.DevExtreme().DataGrid<Order>()
+            .ID("orderGrid")
+            .DataSource(ds => ds.Mvc()
+                .Controller("Orders")
+                .LoadParams(new { CustomerId = @Model.Id })
+                .LoadAction("Get")
+                .InsertAction("Post")
+                .UpdateAction("Put")
+                .DeleteAction("Delete")
+                .Key("OrderId")
+            )
+            .Selection(s => s
+            .Mode(SelectionMode.Single)
+            )
+            .RemoteOperations(true)
+            .Height(new JS("orderGridHeight"))
+            .Columns(columns =>
+            {
+                columns.AddFor(m => m.OrderId).AllowEditing(false);
+                columns.AddFor(m => m.CustomerId).Lookup(lookup => lookup
+                    .DataSource(ds => ds.WebApi()
+                        .Controller("Orders")
+                        .LoadParams(new { CustomerId = @Model.Id })
+                        .LoadAction("CustomersLookup")
+                        .Key("Value")
+                    )
+                    .ValueExpr("Value")
+                    .DisplayExpr("Text")
+                );
+                columns.AddFor(m => m.NumberOfItems);
+                columns.AddFor(m => m.TotalPrice);
+                columns.AddFor(m => m.PaymentStatus);
+            })
+            .HeaderFilter(f => f.Visible(true))
+            .Editing(e => e
+                .AllowAdding(true)
+                .AllowUpdating(true)
+                .AllowDeleting(true)
+            )
+        )
+    </div>
+}
+
+@using (Html.DevExtreme().NamedTemplate("CrytoOrderTabTemplate"))
+{
+    <div>
+        @(Html.DevExtreme().DataGrid<CryptoOrder>()
+            .ID("cryptoOrderGrid")
+            .DataSource(ds => ds.Mvc()
+                .Controller("CryptoOrders")
+                .LoadParams(new { CustomerId = @Model.Id })
+                .LoadAction("Get")
+                .InsertAction("Post")
+                .UpdateAction("Put")
+                .DeleteAction("Delete")
+                .Key("CryptoId")
+            )
+            .Selection(s => s
+            .Mode(SelectionMode.Single)
+            )
+            .RemoteOperations(true)
+            .Height(new JS("cryptoOrderGridHeight"))
+            .Columns(columns =>
+            {
+
+                columns.AddFor(m => m.CryptoId).AllowEditing(false);
+
+                columns.AddFor(m => m.CustomerId).Lookup(lookup => lookup
+                    .DataSource(ds => ds.WebApi()
+                        .Controller("Orders")
+                        .LoadParams(new { CustomerId = @Model.Id })
+                        .LoadAction("CustomersLookup")
+                        .Key("Value")
+                    )
+                    .ValueExpr("Value")
+                    .DisplayExpr("Text")
+                );
+
+                columns.AddFor(m => m.Symbol);
+
+                columns.AddFor(m => m.Quantity);
+
+                columns.AddFor(m => m.Price);
+            })
+            .HeaderFilter(f => f.Visible(true))
+            .Editing(e => e
+                .AllowAdding(true)
+                .AllowUpdating(true)
+                .AllowDeleting(true)
+            )
+        )
+    </div>
+}
+
+<script>
+    var orderGridHeight = $(window).height() * .576;
+    var cryptoOrderGridHeight = $(window).height() * .576;
+</script>

@@ -1,46 +1,233 @@
-﻿@model Customer
- 
-@{
-    Layout = "_LayoutCustomer";
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_LayoutAdmin";
 }
 
-<div class="cust-details">
-    <h5>ID: @Model.Id  &nbsp  Name: @Model.Name</h5>
-    <h5>Gender: @Model.Gender   &nbsp  Phone: @Model.Phone</h5>
-    <h5>Address: @Model.Address   &nbsp  City: @Model.City</h5>
-    <h5>Country: @Model.Country</h5>
-</div> 
-<h2>My Orders</h2>
-@(Html.DevExtreme().DataGrid<DevExtremeAspNetCoreAppDemo1.Models.Order>()
-    .DataSource(ds => ds.Mvc()
-        .Controller("Orders")
-        .LoadAction("Get")
-        .LoadParams(new { customerId = @Model.Id })
-        .InsertAction("Post")
-        .UpdateAction("Put")
-        .DeleteAction("Delete")
-        .Key("OrderId")
-    )
-    .RemoteOperations(true)
-    .Columns(columns => {
+<body>
+    <div>
+        @(Html.DevExtreme().FilterBuilder<Customer>()
+            .ID("FilterBuilder")
+            .Fields(field =>
+            {
+                field.AddFor(f => f.Id);
+                field.AddFor(f => f.Name);
+                field.AddFor(f => f.Gender);
+                field.AddFor(f => f.Phone);
+                field.AddFor(f => f.Address);
+                field.AddFor(f => f.City);
+                field.AddFor(f => f.Country);
+            })
+            .OnValueChanged("onFilterChanged")
+        )
 
-        columns.AddFor(m => m.OrderId).AllowEditing(false);
+        @(Html.DevExtreme().DataGrid<Customer>()
+            .ID("CustomerGrid")
+            .DataSource(ds => ds.Mvc()
+                .Controller("Customers")
+                .LoadAction("Get")
+                .InsertAction("Post")
+                .UpdateAction("Put")
+                .DeleteAction("Delete")
+                .Key("Id")
+            )
+            .Height(new JS("CustomerGridHeight"))
+            .RemoteOperations(true)
+            .AllowColumnResizing(true)
+            .Pager(p => p
+                .ShowNavigationButtons(true)
+                .Visible(true)
+                .DisplayMode(GridPagerDisplayMode.Full)
+                .ShowInfo(true)
+            )
+            .Selection(s => s
+                .Mode(SelectionMode.Single)
+            )
+            .Columns(columns =>
+            {
+                columns.AddFor(m => m.Id).AllowEditing(false);
+                columns.AddFor(m => m.Name);
+                columns.AddFor(m => m.Password);
+                columns.AddFor(m => m.Gender);
+                columns.AddFor(m => m.Phone);
+                columns.AddFor(m => m.Address);
+                columns.AddFor(m => m.City);
+                columns.AddFor(m => m.Country);
+            })
+            .OnSelectionChanged("onCustomerGridSelectionChanged")
+            .Editing(e => e
+                .AllowAdding(true)
+                .AllowUpdating(true)
+                .AllowDeleting(true)
+            )
+        )
 
-        columns.AddFor(m => m.CustomerId).Lookup(lookup => lookup
-            .DataSource(ds => ds.WebApi().Controller("Orders").LoadAction("CustomersLookup").LoadParams( new { custid = @Model.Id }) .Key("Value"))
-            .ValueExpr("Value")
-            .DisplayExpr("Text")
-        );
+        @(Html.DevExtreme().Accordion()
+            .ID("AccordionContainer")
+            .Items(it =>
+            {
+                it.Add().Title("Orders").Template(new TemplateName("OrderAccordianTemplate"));
+            }
+            )
+            .Collapsible(true)
+        )
 
-        columns.AddFor(m => m.NumberOfItems);
+        @using (Html.DevExtreme().NamedTemplate("OrderAccordianTemplate"))
+        {
+            <div class="row">
+                <div class="col-6">
+                    <div>
+                        @(Html.DevExtreme().TabPanel()
+                            .ID("ProductOrderTabPanel")
+                            .Items(tp =>
+                            {
+                                tp.Add().Title("Product Orders").Template(new TemplateName("ProductOrderTabTemplate"));
+                            })
+                        )
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        @(Html.DevExtreme().TabPanel()
+                            .ID("CryptoOrderTabPanel")
+                            .Items(tp =>
+                            {
+                                tp.Add().Title("Crypto Orders").Template(new TemplateName("CrytoOrderTabTemplate"));
+                            })
+                        )
+                    </div>
+                </div>
+            </div>
+        }
 
-        columns.AddFor(m => m.TotalPrice);
+        @using (Html.DevExtreme().NamedTemplate("ProductOrderTabTemplate"))
+        {
+            <div>
+                @(Html.DevExtreme().DataGrid<Order>()
+                    .ID("OrderGrid")
+                    .DataSource(ds => ds.Mvc()
+                        .Controller("Orders")
+                        .LoadParams(new { CustomerId = new JS("GridParamsForOrders") })
+                        .LoadAction("Get")
+                        .InsertAction("Post")
+                        .UpdateAction("Put")
+                        .DeleteAction("Delete")
+                        .Key("OrderId")
+                    )
+                    .Selection(s => s
+                        .Mode(SelectionMode.Single)
+                    )
+                    .RemoteOperations(true)
+                    .Height(new JS("ProductOrderGridHeight"))
+                    .Columns(columns =>
+                    {
+                        columns.AddFor(m => m.OrderId).AllowEditing(false);
+                        columns.AddFor(m => m.CustomerId).Lookup(lookup => lookup
+                            .DataSource(ds => ds.WebApi()
+                                .Controller("Orders")
+                                .LoadParams(new { CustomerId = new JS("GridParamsForOrders") })
+                                .LoadAction("CustomersLookup")
+                                .Key("Value")
+                            )
+                            .ValueExpr("Value")
+                            .DisplayExpr("Text")
+                        );
+                        columns.AddFor(m => m.NumberOfItems);
+                        columns.AddFor(m => m.TotalPrice);
+                        columns.AddFor(m => m.PaymentStatus);
+                    })
+                    .HeaderFilter(f => f.Visible(true))
+                    .Editing(e => e
+                        .AllowAdding(true)
+                        .AllowUpdating(true)
+                        .AllowDeleting(true)
+                    )
+                )
+            </div>
+        }
 
-        columns.AddFor(m => m.PaymentStatus);
-    })
-    .Editing(e => e
-        .AllowAdding(true)
-        .AllowUpdating(true)
-        .AllowDeleting(true)
-    )
-)
+        @using (Html.DevExtreme().NamedTemplate("CrytoOrderTabTemplate"))
+        {
+            <div>
+                @(Html.DevExtreme().DataGrid<CryptoOrder>()
+                    .ID("CryptoOrderGrid")
+                    .DataSource(ds => ds.Mvc()
+                        .Controller("CryptoOrders")
+                        .LoadParams(new { CustomerId = new JS("GridParamsForOrders") })
+                        .LoadAction("Get")
+                        .InsertAction("Post")
+                        .UpdateAction("Put")
+                        .DeleteAction("Delete")
+                        .Key("CryptoId")
+                    )
+                    .Selection(s => s
+                        .Mode(SelectionMode.Single)
+                    )
+                    .RemoteOperations(true)
+                    .Height(new JS("CrytpoOrderGridHeight"))
+                    .Columns(columns =>
+                    {
+
+                        columns.AddFor(m => m.CryptoId).AllowEditing(false);
+
+                        columns.AddFor(m => m.CustomerId).Lookup(lookup => lookup
+                            .DataSource(ds => ds.WebApi()
+                                .Controller("Orders")
+                                .LoadParams(new { CustomerId = new JS("GridParamsForOrders") })
+                                .LoadAction("CustomersLookup")
+                                .Key("Value")
+                            )
+                            .ValueExpr("Value")
+                            .DisplayExpr("Text")
+                        );
+
+                        columns.AddFor(m => m.Symbol);
+
+                        columns.AddFor(m => m.Quantity);
+
+                        columns.AddFor(m => m.Price);
+                    })
+                    .HeaderFilter(f => f.Visible(true))
+                    .Editing(e => e
+                        .AllowAdding(true)
+                        .AllowUpdating(true)
+                        .AllowDeleting(true)
+                    )
+                )
+            </div>
+        }
+    </div>
+
+    <script>
+        var currentSelectedCustomerId = 0;
+        var CustomerGridHeight = $(window).height() * .50;
+        var ProductOrderGridHeight = $(window).height() * .324;
+        var CrytpoOrderGridHeight = $(window).height() * .324;
+
+        function GridParamsForOrders() {
+            return currentSelectedCustomerId;
+        }
+
+        function onCustomerGridSelectionChanged(e) {
+            var data = e.selectedRowsData[0];
+            if (data) {
+                currentSelectedCustomerId = data.Id;
+                reloadOrderGrid();
+            }
+        }
+
+        function reloadOrderGrid() {
+            var orderDataGridInstance = $("#OrderGrid").dxDataGrid("instance");
+            var cryptoOrderGridInstance = $("#CryptoOrderGrid").dxDataGrid("instance");
+
+            if (orderDataGridInstance && cryptoOrderGridInstance) {
+                orderDataGridInstance.getDataSource().reload();
+                cryptoOrderGridInstance.getDataSource().reload();
+            }
+        }
+
+        function onFilterChanged(e) {
+            var customerDataGrid = $("#CustomerGrid").dxDataGrid("instance");
+            customerDataGrid.option("filterValue", e.component.option("value"));
+        }
+    </script>
+</body>

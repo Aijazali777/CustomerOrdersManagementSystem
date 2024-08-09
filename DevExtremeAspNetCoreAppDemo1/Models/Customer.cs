@@ -16,5 +16,6 @@ namespace DevExtremeAspNetCoreAppDemo1.Models
         public string City { get; set; }
         public string Country { get; set; }
         public ICollection<Order> Orders { get; set; } = new List<Order>();
+        public ICollection<CryptoOrder> CryptoOrders { get; set; } = new List<CryptoOrder>();
     }
 }
